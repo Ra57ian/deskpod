@@ -1,0 +1,31 @@
+{
+  "name": "deskpod",
+  "productName": "Deskpod",
+  "version": "0.1.0",
+  "description": "Mini reproductor flotante estilo iPod para tu escritorio",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "build": "vite build && electron-builder",
+    "build:portable": "vite build && electron-builder --win portable"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8",
+    "vite": "^5.4.11",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.deskpod.app",
+    "productName": "Deskpod",
+    "files": ["dist/**", "electron/**"],
+    "win": { "target": ["nsis", "portable"], "icon": "electron/icon.ico" },
+    "nsis": { "installerIcon": "electron/icon.ico", "uninstallerIcon": "electron/icon.ico" }
+  }
+}
